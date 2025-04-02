@@ -11,7 +11,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-PRMTWEDPQT');
     </script>
     <style>
@@ -52,6 +51,12 @@
             line-height: 1.6;
             padding: 20px;
             min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         h1 {
@@ -214,43 +219,50 @@
 <body>
     <div class="container">
         <h1>Super Sudoku 16*16</h1>
-        
-        <p class="tagline">Challenge your mind with this enhanced version of Sudoku! In this 16*16 super Sudoku, numbers 10-16 are represented by letters A-G, offering a more challenging gaming experience.</p>
+        <p class="tagline">挑战你的思维极限，体验超级数独的乐趣！</p>
+        <p class="tagline">Challenge your mind with the ultimate Sudoku experience!</p>
 
         <div class="game-container">
-            <iframe src="https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16" allow="fullscreen" allowfullscreen></iframe>
+            <iframe src="https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16" title="Super Sudoku 16*16"></iframe>
         </div>
 
         <div class="game-controls">
-            <button onclick="changeGame('https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16')">Game 1</button>
-            <button onclick="changeGame('https://www.sudoku16x16.com/')">Game 2</button>
-            <button onclick="changeGame('https://www.sudoku-puzzles-online.com/16x16-sudoku.html')">Game 3</button>
+            <button onclick="changeGame('https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16')">游戏1</button>
+            <button onclick="changeGame('https://www.sudoku16x16.com/')">游戏2</button>
+            <button onclick="changeGame('https://www.sudoku-puzzles-online.com/16x16-sudoku.html')">游戏3</button>
         </div>
 
-        <h2>About The Game</h2>
-        <p>Welcome to Super Sudoku 16*16, an enhanced version of the classic Sudoku game that expands the traditional 9*9 grid to a more challenging 16*16 format. In this version, numbers 10-16 are represented by letters A-G, adding an extra layer of complexity and excitement to the game.</p>
-
-        <h2>Game Features</h2>
+        <h2>游戏特色</h2>
         <div class="features">
             <div class="feature-card">
-                <h3>16*16 Grid</h3>
-                <p>Experience a larger-scale Sudoku challenge in a 16*16 grid that will test your logical thinking skills.</p>
+                <h3>16x16 超大棋盘</h3>
+                <p>突破传统9x9的限制，体验更大规模的数独挑战。数字10-16用字母A-G表示，让游戏更加直观。</p>
             </div>
             <div class="feature-card">
-                <h3>Letter-Number System</h3>
-                <p>Numbers 10-16 are represented by letters A-G, creating a unique and engaging gameplay experience.</p>
+                <h3>多种难度选择</h3>
+                <p>从简单到困难，满足不同玩家的需求。逐步提升难度，享受进阶的乐趣。</p>
             </div>
             <div class="feature-card">
-                <h3>Multiple Difficulty Levels</h3>
-                <p>Choose from easy, medium, and hard difficulty levels to match your skill and experience.</p>
+                <h3>实时错误检查</h3>
+                <p>智能提示系统帮助您及时发现错误，让游戏体验更加流畅。</p>
             </div>
         </div>
 
-        <h2>How to Play</h2>
-        <p>Fill in the 16*16 grid with numbers 1-9 and letters A-G, ensuring that each row, column, and 4*4 region contains no duplicates. Numbers 10-16 are represented by letters A-G, adding an extra challenge to the game. Use your logical thinking to complete this enhanced Sudoku challenge!</p>
-
-        <h2>System Requirements</h2>
-        <p>Super Sudoku 16*16 is a browser-based game that works on all modern devices. For the best experience, we recommend using an updated version of Chrome, Firefox, or Safari. The game is fully optimized for both desktop and mobile play.</p>
+        <h2>游戏规则</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>基本规则</h3>
+                <p>1. 每行、每列和每个4x4的方格中必须包含数字1-9和字母A-G（代表10-16）<br>
+                2. 每个数字和字母在每个区域中只能出现一次<br>
+                3. 初始数字和字母不能更改</p>
+            </div>
+            <div class="feature-card">
+                <h3>特殊规则</h3>
+                <p>1. 数字10-16用字母A-G表示<br>
+                2. 每个4x4的方格内数字和字母不能重复<br>
+                3. 相邻的相同数字或字母之间必须至少间隔一个格子</p>
+            </div>
+        </div>
     </div>
 
     <script>
