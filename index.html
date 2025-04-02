@@ -174,30 +174,65 @@
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
             .container {
-                padding: 15px;
+                padding: 10px;
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
             }
 
             .game-container {
-                margin: 1rem 0;
+                margin: 10px 0;
+                padding: 10px;
             }
 
-            .feature-card {
-                padding: 1.5rem;
+            .game-frame {
+                height: 60vh;
+                min-height: 400px;
+            }
+
+            .game-controls {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+                justify-content: center;
+                margin: 10px 0;
             }
 
             .game-controls button {
-                padding: 8px 16px;
+                padding: 8px 12px;
                 font-size: 0.9rem;
-                min-width: 100px;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .game-rules {
+                display: none;
+            }
+
+            .footer {
+                display: none;
+            }
+
+            .difficulty-selector {
+                margin: 10px 0;
+            }
+
+            .difficulty-selector select {
+                padding: 8px;
+                font-size: 0.9rem;
             }
         }
 
@@ -212,6 +247,24 @@
 
             .features {
                 grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .header p {
+                font-size: 0.8rem;
+            }
+
+            .game-frame {
+                height: 50vh;
+                min-height: 300px;
+            }
+
+            .game-controls button {
+                padding: 6px 10px;
+                font-size: 0.8rem;
             }
         }
     </style>
