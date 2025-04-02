@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Capybara - The Ultimate Capybara Clicker Game</title>
-    <link rel="canonical" href="https://capybaraonline.com/my-capybara" />
-    <meta name="description" content="Embark on an exciting journey with the world's most adorable rodent in My Capybara, a delightful clicker game where you help your capybara friend thrive and grow!">
+    <title>Super Sudoku 16*16</title>
+    <meta name="description" content="Challenge your mind with Super Sudoku 16*16! In this enhanced version of Sudoku, numbers 10-16 are represented by letters A-G, offering a more challenging gaming experience.">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRMTWEDPQT"></script>
     <script>
@@ -17,62 +16,91 @@
     </script>
     <style>
         :root {
-            --apple-blue: #007AFF;
-            --apple-gray: #8E8E93;
-            --apple-green: #34C759;
-            --apple-background: #FFE4E1;
-            --apple-text: #1C1C1E;
+            --primary-color: #E6B3D7;  /* 马卡龙粉紫 */
+            --secondary-color: #A8B2BC;  /* 莫兰迪灰 */
+            --accent-color: #E6B3B3;    /* 莫兰迪粉 */
+            --background-color: #FFE4E1; /* 马卡龙粉 */
+            --card-background: #F5F5F5;  /* 莫兰迪白 */
+            --text-color: #4A4A4A;      /* 深灰 */
+            --text-light: #8B8B8B;      /* 莫兰迪灰 */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        @keyframes colorGradient {
+            0% {
+                color: #F8E6F3;  /* 最浅的粉紫色 */
+            }
+            50% {
+                color: #D46B9E;  /* 最深的粉紫色 */
+            }
+            100% {
+                color: #F8E6F3;  /* 最浅的粉紫色 */
+            }
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--apple-background);
-            color: var(--apple-text);
+            background-color: var(--background-color);
+            color: var(--text-color);
             line-height: 1.6;
             padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+            min-height: 100vh;
         }
 
         h1 {
-            color: var(--apple-blue);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
             text-align: center;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: colorGradient 4s infinite;
         }
 
         h2 {
-            color: var(--apple-text);
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            font-weight: 600;
         }
 
         p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .tagline {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
         }
 
         .game-container {
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 100%;
             margin: 2rem 0;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
+            background: var(--card-background);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .game-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
         .game-container iframe {
@@ -86,77 +114,149 @@
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(5px);
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
         }
 
         .feature-card h3 {
-            color: var(--apple-blue);
-            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .game-controls button {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            min-width: 120px;
+        }
+
+        .game-controls button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
 
             .container {
-                padding: 10px;
+                padding: 15px;
             }
 
             .game-container {
                 margin: 1rem 0;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .game-controls button {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                min-width: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>My Capybara - Clicker Adventure</h1>
+        <h1>Super Sudoku 16*16</h1>
         
-        <p class="tagline">Dive into the charming world of capybaras in this addictive clicker game where every click brings joy and progression!</p>
+        <p class="tagline">Challenge your mind with this enhanced version of Sudoku! In this 16*16 super Sudoku, numbers 10-16 are represented by letters A-G, offering a more challenging gaming experience.</p>
 
         <div class="game-container">
-            <iframe src="https://www.onlinegames.io/games/2023/q2/capybara-clicker-pro/index.html" allow="fullscreen" allowfullscreen></iframe>
+            <iframe src="https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16" allow="fullscreen" allowfullscreen></iframe>
+        </div>
+
+        <div class="game-controls">
+            <button onclick="changeGame('https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16')">Game 1</button>
+            <button onclick="changeGame('https://www.sudoku16x16.com/')">Game 2</button>
+            <button onclick="changeGame('https://www.sudoku-puzzles-online.com/16x16-sudoku.html')">Game 3</button>
         </div>
 
         <h2>About The Game</h2>
-        <p>Welcome to My Capybara, where you'll embark on an exciting journey with the world's largest and most sociable rodent. This engaging clicker game combines cute graphics with strategic gameplay, creating an irresistible gaming experience for players of all ages.</p>
+        <p>Welcome to Super Sudoku 16*16, an enhanced version of the classic Sudoku game that expands the traditional 9*9 grid to a more challenging 16*16 format. In this version, numbers 10-16 are represented by letters A-G, adding an extra layer of complexity and excitement to the game.</p>
 
         <h2>Game Features</h2>
         <div class="features">
             <div class="feature-card">
-                <h3>Progressive Gameplay</h3>
-                <p>Start with a single capybara and build your way up to a thriving capybara paradise through strategic clicking and resource management.</p>
+                <h3>16*16 Grid</h3>
+                <p>Experience a larger-scale Sudoku challenge in a 16*16 grid that will test your logical thinking skills.</p>
             </div>
             <div class="feature-card">
-                <h3>Upgrades & Achievements</h3>
-                <p>Unlock various upgrades and earn achievements as you progress through the game, enhancing your capybara's abilities and environment.</p>
+                <h3>Letter-Number System</h3>
+                <p>Numbers 10-16 are represented by letters A-G, creating a unique and engaging gameplay experience.</p>
             </div>
             <div class="feature-card">
-                <h3>Relaxing Experience</h3>
-                <p>Enjoy the soothing atmosphere and adorable animations while managing your growing capybara community.</p>
+                <h3>Multiple Difficulty Levels</h3>
+                <p>Choose from easy, medium, and hard difficulty levels to match your skill and experience.</p>
             </div>
         </div>
 
         <h2>How to Play</h2>
-        <p>Click to interact with your capybara and earn points. Use these points to purchase upgrades and unlock new features. The more you progress, the more exciting the game becomes! Strategic decisions and timing are key to maximizing your success in this delightful adventure.</p>
+        <p>Fill in the 16*16 grid with numbers 1-9 and letters A-G, ensuring that each row, column, and 4*4 region contains no duplicates. Numbers 10-16 are represented by letters A-G, adding an extra challenge to the game. Use your logical thinking to complete this enhanced Sudoku challenge!</p>
 
         <h2>System Requirements</h2>
-        <p>My Capybara is a browser-based game that works on all modern devices. For the best experience, we recommend using an updated version of Chrome, Firefox, or Safari. The game is fully optimized for both desktop and mobile play.</p>
+        <p>Super Sudoku 16*16 is a browser-based game that works on all modern devices. For the best experience, we recommend using an updated version of Chrome, Firefox, or Safari. The game is fully optimized for both desktop and mobile play.</p>
     </div>
+
+    <script>
+        function changeGame(url) {
+            document.querySelector('.game-container iframe').src = url;
+        }
+    </script>
 </body>
 </html> 
