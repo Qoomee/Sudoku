@@ -1,321 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Sudoku 16*16</title>
-    <meta name="description" content="Challenge your mind with Super Sudoku 16*16! In this enhanced version of Sudoku, numbers 10-16 are represented by letters A-G, offering a more challenging gaming experience.">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PRMTWEDPQT"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-PRMTWEDPQT');
-    </script>
+    <title>Super Sudoku</title>
     <style>
-        :root {
-            --primary-color: #E6B3D7;  /* 马卡龙粉紫 */
-            --secondary-color: #A8B2BC;  /* 莫兰迪灰 */
-            --accent-color: #E6B3B3;    /* 莫兰迪粉 */
-            --background-color: #FFE4E1; /* 马卡龙粉 */
-            --card-background: #F5F5F5;  /* 莫兰迪白 */
-            --text-color: #4A4A4A;      /* 深灰 */
-            --text-light: #8B8B8B;      /* 莫兰迪灰 */
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
-        @keyframes colorGradient {
-            0% {
-                color: #F8E6F3;  /* 最浅的粉紫色 */
-            }
-            50% {
-                color: #D46B9E;  /* 最深的粉紫色 */
-            }
-            100% {
-                color: #F8E6F3;  /* 最浅的粉紫色 */
-            }
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+            background-color: #FFE4E1;  /* 马卡龙粉色 */
+            color: #333;
             line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes titleColor {
+            0% {
+                color: #FFB6C1;  /* 浅粉紫色 */
+            }
+            45% {
+                color: #D8A7B1;  /* 中等粉紫色 */
+            }
+            50% {
+                color: #B37F8E;  /* 深粉紫色 */
+            }
+            95% {
+                color: #B37F8E;  /* 深粉紫色停留 */
+            }
+            100% {
+                color: #FFB6C1;  /* 回到浅粉紫色 */
+            }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
 
-        h1 {
-            color: var(--primary-color);
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+        .header {
             text-align: center;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: colorGradient 4s infinite;
+            margin: 30px 0;
+            padding-top: 20px;
         }
 
-        h2 {
-            color: var(--secondary-color);
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
-            font-weight: 600;
+        .header h1 {
+            font-size: 2.2rem;
+            animation: titleColor 10s infinite;
+            margin-bottom: 15px;
         }
 
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--text-color);
-        }
-
-        .tagline {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-style: italic;
+        .header p {
+            font-size: 1rem;
+            color: #666;
         }
 
         .game-container {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 100%;
-            margin: 2rem 0;
-            background: var(--card-background);
-            border-radius: 16px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            margin: 10px 0;
+            position: relative;
+            height: calc(100vh - 200px);
+            scrollbar-width: none;
         }
 
-        .game-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        .game-container::-webkit-scrollbar {
+            display: none;
         }
 
-        .game-container iframe {
+        .game-frame {
+            width: 100%;
+            height: 1200px;
+            border: none;
+            position: absolute;
+            top: -35px;
+            left: 0;
+            transform: scale(0.92);
+            transform-origin: top center;
+            overflow: hidden;
+            pointer-events: auto;
+            scrollbar-width: none;
+        }
+
+        .game-frame::-webkit-scrollbar {
+            display: none;
+        }
+
+        .game-frame-wrapper {
             position: absolute;
             top: 0;
             left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .game-frame-content {
+            position: absolute;
+            top: -300px;
+            left: 0;
             width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: var(--card-background);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card h3 {
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            font-weight: 600;
+            height: calc(100% + 300px);
+            pointer-events: none;
         }
 
         .game-controls {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 1.5rem 0;
-            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
         }
 
         .game-controls button {
-            padding: 10px 20px;
-            background-color: var(--accent-color);
+            padding: 8px 15px;
+            background-color: #1a73e8;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: var(--transition);
-            min-width: 120px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
         }
 
         .game-controls button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #1557b0;
+        }
+
+        .difficulty-selector {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .difficulty-selector select {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            height: 35px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            color: #666;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 5px;
-                max-width: 100%;
-            }
-
-            .header {
-                padding: 5px;
-                margin-bottom: 5px;
             }
 
             .header h1 {
-                font-size: 1.2rem;
-                margin: 0;
+                font-size: 1.5rem;
             }
 
             .header p {
-                font-size: 0.8rem;
-                margin: 2px 0;
+                font-size: 0.9rem;
             }
 
             .game-container {
-                margin: 5px 0;
-                padding: 5px;
+                height: calc(100vh - 160px);
             }
 
             .game-frame {
-                height: 75vh;
-                min-height: 500px;
-                width: 100%;
-                border: none;
-            }
-
-            .game-controls {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 3px;
-                justify-content: center;
-                margin: 5px 0;
+                top: -30px;
+                transform: scale(0.87);
             }
 
             .game-controls button {
-                padding: 5px 8px;
-                font-size: 0.8rem;
-                min-width: 80px;
-            }
-
-            .features {
-                display: none;
-            }
-
-            .game-rules {
-                display: none;
-            }
-
-            .footer {
-                display: none;
-            }
-
-            .difficulty-selector {
-                margin: 5px 0;
-            }
-
-            .difficulty-selector select {
-                padding: 5px;
+                padding: 6px 12px;
                 font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
             .header h1 {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
-            .header p {
-                font-size: 0.7rem;
+            .game-container {
+                height: calc(100vh - 140px);
             }
 
             .game-frame {
-                height: 80vh;
-                min-height: 400px;
+                top: -25px;
+                transform: scale(0.82);
+            }
+
+            .game-controls {
+                gap: 5px;
             }
 
             .game-controls button {
-                padding: 4px 6px;
+                padding: 5px 10px;
                 font-size: 0.7rem;
-                min-width: 70px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Super Sudoku 16*16</h1>
-        <p class="tagline">挑战你的思维极限，体验超级数独的乐趣！</p>
-        <p class="tagline">Challenge your mind with the ultimate Sudoku experience!</p>
+        <header class="header">
+            <h1>Super Sudoku 16*16!!!</h1>
+        </header>
 
         <div class="game-container">
-            <iframe src="https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16" title="Super Sudoku 16*16"></iframe>
+            <iframe class="game-frame" src="https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16" title="Super Sudoku"></iframe>
         </div>
 
         <div class="game-controls">
-            <button onclick="changeGame('https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16')">游戏1</button>
-            <button onclick="changeGame('https://www.sudoku16x16.com/')">游戏2</button>
-            <button onclick="changeGame('https://www.sudoku-puzzles-online.com/16x16-sudoku.html')">游戏3</button>
+            <div class="difficulty-selector">
+                <select id="difficulty" onchange="changeDifficulty()">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <button onclick="newGame()">New Game</button>
+            <button onclick="checkSolution()">Check</button>
+            <button onclick="solvePuzzle()">Solution</button>
         </div>
 
-        <h2>游戏特色</h2>
-        <div class="features">
-            <div class="feature-card">
-                <h3>16x16 超大棋盘</h3>
-                <p>突破传统9x9的限制，体验更大规模的数独挑战。数字10-16用字母A-G表示，让游戏更加直观。</p>
-            </div>
-            <div class="feature-card">
-                <h3>多种难度选择</h3>
-                <p>从简单到困难，满足不同玩家的需求。逐步提升难度，享受进阶的乐趣。</p>
-            </div>
-            <div class="feature-card">
-                <h3>实时错误检查</h3>
-                <p>智能提示系统帮助您及时发现错误，让游戏体验更加流畅。</p>
-            </div>
-        </div>
-
-        <h2>游戏规则</h2>
-        <div class="features">
-            <div class="feature-card">
-                <h3>基本规则</h3>
-                <p>1. 每行、每列和每个4x4的方格中必须包含数字1-9和字母A-G（代表10-16）<br>
-                2. 每个数字和字母在每个区域中只能出现一次<br>
-                3. 初始数字和字母不能更改</p>
-            </div>
-            <div class="feature-card">
-                <h3>特殊规则</h3>
-                <p>1. 数字10-16用字母A-G表示<br>
-                2. 每个4x4的方格内数字和字母不能重复<br>
-                3. 相邻的相同数字或字母之间必须至少间隔一个格子</p>
-            </div>
-        </div>
+        <footer class="footer">
+            <p>© 2024 Super Sudoku. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
-        function changeGame(url) {
-            document.querySelector('.game-container iframe').src = url;
+        const baseUrl = 'https://www.1sudoku.com/sudoku-variants/super-sudoku-16x16';
+        
+        function changeDifficulty() {
+            const difficulty = document.getElementById('difficulty').value;
+            const iframe = document.querySelector('.game-frame');
+            let url = baseUrl;
+            
+            switch(difficulty) {
+                case 'easy':
+                    url = baseUrl;
+                    break;
+                case 'medium':
+                    url = baseUrl + '?difficulty=medium';
+                    break;
+                case 'hard':
+                    url = baseUrl + '?difficulty=hard';
+                    break;
+            }
+            
+            iframe.src = url;
+        }
+
+        function newGame() {
+            const iframe = document.querySelector('.game-frame');
+            const difficulty = document.getElementById('difficulty').value;
+            let url = baseUrl;
+            
+            if (difficulty !== 'easy') {
+                url += `?difficulty=${difficulty}`;
+            }
+            
+            iframe.src = url;
+        }
+
+        function checkSolution() {
+            const iframe = document.querySelector('.game-frame');
+            if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage('checkSolution', '*');
+            }
+        }
+
+        function solvePuzzle() {
+            const iframe = document.querySelector('.game-frame');
+            if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage('solvePuzzle', '*');
+            }
         }
     </script>
 </body>
