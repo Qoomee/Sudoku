@@ -190,6 +190,25 @@
             }
         }
 
+        /* iPad 专用样式 */
+        @media only screen 
+        and (min-device-width: 768px) 
+        and (max-device-width: 1024px) {
+            .game-container {
+                height: calc(100vh - 180px);
+            }
+
+            .game-frame {
+                top: -45px;
+                transform: scale(0.75);
+            }
+
+            .header {
+                margin: 20px 0;
+                padding-top: 15px;
+            }
+        }
+
         @media (max-width: 480px) {
             .header h1 {
                 font-size: 1.2rem;
